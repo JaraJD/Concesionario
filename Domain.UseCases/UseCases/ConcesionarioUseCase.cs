@@ -24,9 +24,9 @@ namespace Domain.UseCases.UseCases
 			return await _concesionarioRepository.InsertConcesionarioAsync(concesionario);
 		}
 
-		public Task<Concesionario> ObtenerConcesionarioPorId(int idConcesionario)
+		public async Task<Concesionario> ObtenerConcesionarioPorId(int idConcesionario)
 		{
-			throw new NotImplementedException();
+			return await _concesionarioRepository.GetConcesionarioByIdAsync(idConcesionario);
 		}
 
 		public async Task<List<Concesionario>> ObtenerListaConcesionarios()

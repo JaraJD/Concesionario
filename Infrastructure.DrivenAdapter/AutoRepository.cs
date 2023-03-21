@@ -35,9 +35,19 @@ namespace Infrastructure.DrivenAdapter
 			return result.ToList();
 		}
 
-		public Task<Auto> InsertAutoAsync(Auto auto)
+		public async Task<Auto> InsertAutoAsync(Auto auto)
 		{
-			throw new NotImplementedException();
+			var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+			var autoAgregar = new
+			{
+				modelo = auto.modelo,
+				anio = auto.Anio_fabricacion,
+				marcaId = auto.Id_marca,
+				concesionarioId = auto.Id_concesionario,
+			};
+			string sqlQuery = $"INSERT INTO {tableName} (modelo, anio_fabricacion, id_marca, id_concesionario)VALUES(@modelo, @anio, @marcaId, @concesionarioId)";
+			var rows = await connection.ExecuteAsync(sqlQuery, autoAgregar);
+			return auto;
 		}
 	}
 }

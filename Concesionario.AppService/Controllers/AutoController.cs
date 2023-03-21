@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Domain.Entities.Commands;
 using Domain.Entities.Entities;
 using Domain.UseCases.Gateway;
+using Domain.UseCases.UseCases;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Concesionario.AppService.Controllers
@@ -28,6 +30,12 @@ namespace Concesionario.AppService.Controllers
 		public async Task<Auto> Obtener_Auto(int id)
 		{
 			return await _autoUseCase.ObtenerAutoPorId(id);
+		}
+
+		[HttpPost]
+		public async Task<Auto> Registrar_Marca([FromBody] InsertNewAuto command)
+		{
+			return await _autoUseCase.AgregarAuto(_mapper.Map<Auto>(command));
 		}
 	}
 }

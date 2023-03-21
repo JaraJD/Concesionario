@@ -21,9 +21,13 @@ namespace Infrastructure.DrivenAdapter
 			_dbConnectionBuilder = dbConnectionBuilder;
 		}
 
-		public Task<Concesionario> GetConcesionarioByIdAsync(int idAuto)
+		public async Task<Concesionario> GetConcesionarioByIdAsync(int idConcesionario)
 		{
-			throw new NotImplementedException();
+			var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+			string sqlQuery = $"SELECT * FROM {tableName} WHERE id = @idConcesionario";
+			var result = await connection.QuerySingleAsync<Concesionario>(sqlQuery, new { idConcesionario });
+			connection.Close();
+			return result;
 		}
 
 		public async Task<List<Concesionario>> GetConcesionariosAsync()
@@ -38,13 +42,13 @@ namespace Infrastructure.DrivenAdapter
 		public async Task<Concesionario> InsertConcesionarioAsync(Concesionario concesionario)
 		{
 			var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-			var directorAAgregar = new
+			var concesionarioAgregar = new
 			{
 				nombre = concesionario.Nombre_concesionario,
 				cantidad = concesionario.Cantidad_Disponible,
 			};
 			string sqlQuery = $"INSERT INTO {tableName} (nombre_concesionario, cantidad_disponible)VALUES(@nombre, @cantidad)";
-			var rows = await connection.ExecuteAsync(sqlQuery, directorAAgregar);
+			var rows = await connection.ExecuteAsync(sqlQuery, concesionarioAgregar);
 			return concesionario;
 		}
 	}
