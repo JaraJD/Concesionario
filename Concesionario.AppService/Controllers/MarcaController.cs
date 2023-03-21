@@ -26,12 +26,6 @@ namespace Concesionario.AppService.Controllers
 			return await _marcaUseCase.ObtenerListaMarcas();
 		}
 
-		[HttpGet("MarcaId")]
-		public async Task<Marca> Obtener_Marca(int id)
-		{
-			return await _marcaUseCase.ObtenerMarcaPorId(id);
-		}
-
 		[HttpPost]
 		public async Task<Marca> Registrar_Marca([FromBody] InsertNewMarca command)
 		{

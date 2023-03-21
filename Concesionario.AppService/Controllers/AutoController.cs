@@ -26,12 +26,6 @@ namespace Concesionario.AppService.Controllers
 			return await _autoUseCase.ObtenerListaAutos();
 		}
 
-		[HttpGet("AutoId")]
-		public async Task<Auto> Obtener_Auto(int id)
-		{
-			return await _autoUseCase.ObtenerAutoPorId(id);
-		}
-
 		[HttpPost]
 		public async Task<Auto> Registrar_Marca([FromBody] InsertNewAuto command)
 		{
