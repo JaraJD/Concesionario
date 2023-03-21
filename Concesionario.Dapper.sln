@@ -13,17 +13,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{01AE17
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{8C92BE94-A0F3-4491-BCCF-E95F4EC18A14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concesionario.AppService", "Concesionario.AppService\Concesionario.AppService.csproj", "{0391408B-A185-47AF-91AA-1480B908C4F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concesionario.AppService", "Concesionario.AppService\Concesionario.AppService.csproj", "{0391408B-A185-47AF-91AA-1480B908C4F9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AE3F7C65-5AB3-4398-8948-368B2B5C4EF0} = {AE3F7C65-5AB3-4398-8948-368B2B5C4EF0}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Entities", "Domain.Entities\Domain.Entities.csproj", "{DB8D098D-E06A-4095-B0B4-27C99C1D8068}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Entities", "Domain.Entities\Domain.Entities.csproj", "{DB8D098D-E06A-4095-B0B4-27C99C1D8068}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UseCases", "Domain.UseCases\Domain.UseCases.csproj", "{1BB05C08-3766-4EB6-A537-E8A6C6A66E59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.UseCases", "Domain.UseCases\Domain.UseCases.csproj", "{1BB05C08-3766-4EB6-A537-E8A6C6A66E59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.DrivenAdapter", "Infrastructure.DrivenAdapter\Infrastructure.DrivenAdapter.csproj", "{AE3F7C65-5AB3-4398-8948-368B2B5C4EF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.DrivenAdapter", "Infrastructure.DrivenAdapter\Infrastructure.DrivenAdapter.csproj", "{AE3F7C65-5AB3-4398-8948-368B2B5C4EF0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{FD83E83F-D506-4E5C-B27C-CB5AD14F963D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UseCasesTest", "Domain.UseCasesTest\Domain.UseCasesTest.csproj", "{D584898D-3CA7-4BA8-97E8-59556CB02073}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.UseCasesTest", "Domain.UseCasesTest\Domain.UseCasesTest.csproj", "{D584898D-3CA7-4BA8-97E8-59556CB02073}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
