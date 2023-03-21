@@ -3,6 +3,7 @@ using Domain.UseCases.Gateway;
 using Domain.UseCases.Gateway.Repository;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,9 @@ namespace Domain.UseCases.UseCases
 			_marcaRepository = marcaRepository;
 		}
 
-		public Task<Marca> AgregarMarca(Marca marca)
+		public async Task<Marca> AgregarMarca(Marca marca)
 		{
-			throw new NotImplementedException();
+			return await _marcaRepository.InsertMarcaAsync(marca);
 		}
 
 		public async Task<List<Marca>> ObtenerListaMarcas()

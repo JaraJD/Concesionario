@@ -4,6 +4,7 @@ using Domain.UseCases.Gateway.Repository;
 using Infrastructure.DrivenAdapter.Gateway;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,9 +35,16 @@ namespace Infrastructure.DrivenAdapter
 			throw new NotImplementedException();
 		}
 
-		public Task<Marca> InsertMarcaAsync(Marca marca)
+		public async Task<Marca> InsertMarcaAsync(Marca marca)
 		{
-			throw new NotImplementedException();
+			var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+			var marcaAgregar = new
+			{
+				nombre = marca.Nombre_marca
+			};
+			string sqlQuery = $"INSERT INTO {tableName} (nombre_marca)VALUES(@nombre)";
+			var rows = await connection.ExecuteAsync(sqlQuery, marcaAgregar);
+			return marca;
 		}
 	}
 }
