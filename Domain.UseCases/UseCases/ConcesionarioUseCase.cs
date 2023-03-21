@@ -3,6 +3,7 @@ using Domain.UseCases.Gateway;
 using Domain.UseCases.Gateway.Repository;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,9 @@ namespace Domain.UseCases.UseCases
 			_concesionarioRepository = concesionarioRepository;
 		}
 
-		public Task<Concesionario> AgregarConcesionario(Concesionario concesionario)
+		public async Task<Concesionario> AgregarConcesionario(Concesionario concesionario)
 		{
-			throw new NotImplementedException();
+			return await _concesionarioRepository.InsertConcesionarioAsync(concesionario);
 		}
 
 		public Task<Concesionario> ObtenerConcesionarioPorId(int idConcesionario)

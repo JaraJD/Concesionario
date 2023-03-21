@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using Domain.Entities.Commands;
+using Domain.Entities.Entities;
 using Domain.UseCases.Gateway;
+using Domain.UseCases.UseCases;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Concesionario.AppService.Controllers
@@ -27,6 +30,12 @@ namespace Concesionario.AppService.Controllers
 		public async Task<Domain.Entities.Entities.Concesionario> Obtener_Concesionario(int id)
 		{
 			return await _concesionarioUseCase.ObtenerConcesionarioPorId(id);
+		}
+
+		[HttpPost]
+		public async Task<Domain.Entities.Entities.Concesionario> Registrar_Marca([FromBody] InsertNewConcesionario command)
+		{
+			return await _concesionarioUseCase.AgregarConcesionario(_mapper.Map<Domain.Entities.Entities.Concesionario>(command));
 		}
 	}
 }

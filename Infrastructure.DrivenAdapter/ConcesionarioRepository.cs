@@ -4,6 +4,7 @@ using Domain.UseCases.Gateway.Repository;
 using Infrastructure.DrivenAdapter.Gateway;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,9 +35,17 @@ namespace Infrastructure.DrivenAdapter
 			return result.ToList();
 		}
 
-		public Task<Concesionario> InsertConcesionarioAsync(Concesionario auto)
+		public async Task<Concesionario> InsertConcesionarioAsync(Concesionario concesionario)
 		{
-			throw new NotImplementedException();
+			var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+			var directorAAgregar = new
+			{
+				nombre = concesionario.Nombre_concesionario,
+				cantidad = concesionario.Cantidad_Disponible,
+			};
+			string sqlQuery = $"INSERT INTO {tableName} (nombre_concesionario, cantidad_disponible)VALUES(@nombre, @cantidad)";
+			var rows = await connection.ExecuteAsync(sqlQuery, directorAAgregar);
+			return concesionario;
 		}
 	}
 }
