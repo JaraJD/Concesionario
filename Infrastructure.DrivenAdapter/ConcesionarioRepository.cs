@@ -34,6 +34,7 @@ namespace Infrastructure.DrivenAdapter
 		{
 			var connection = await _dbConnectionBuilder.CreateConnectionAsync();
 			string sqlQuery = $"SELECT * FROM {tableName}";
+			
 			var result = await connection.QueryAsync<Concesionario>(sqlQuery);
 			connection.Close();
 			return result.ToList();

@@ -14,6 +14,8 @@ namespace Domain.Entities.Entities
 
 		public int Anio_fabricacion { get; set; }
 
+		public Marca marca { get; set; }
+
 		public int Id_marca { get; set; }
 
 		public int Id_concesionario { get; set; }
