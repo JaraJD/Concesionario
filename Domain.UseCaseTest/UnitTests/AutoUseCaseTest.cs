@@ -19,7 +19,7 @@ namespace Domain.UseCaseTest.UnitTests
 		}
 
 		[Fact]
-		public async Task Crear_Concesionario()
+		public async Task Crear_Auto()
 		{
 			//Arrange
 
@@ -48,6 +48,30 @@ namespace Domain.UseCaseTest.UnitTests
 
 			//Assert
 			Assert.Equal(auto, res);
+		}
+
+		[Fact]
+		public async Task Get_Autos()
+		{
+			//arrange
+			List<AutoConMarca> Autos = new();
+			var test = new AutoConMarca
+			{
+				modelo = "Audi A1",
+				Anio_fabricacion = 2022
+			};
+			var test1 = new AutoConMarca
+			{
+				modelo = "Audi A3",
+				Anio_fabricacion = 2023
+			};
+			Autos.Add(test);
+			Autos.Add(test1);
+			_mockRepository.Setup(x => x.GetAutosAsync()).ReturnsAsync(Autos);
+			//act
+			var result = await _mockRepository.Object.GetAutosAsync();
+			//assert
+			Assert.Equal(Autos, result);
 		}
 	}
 }

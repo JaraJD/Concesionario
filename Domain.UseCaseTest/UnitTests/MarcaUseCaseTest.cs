@@ -40,5 +40,27 @@ namespace Domain.UseCaseTest.UnitTests
 			Assert.Equal(marca, res);
 		}
 
+		[Fact]
+		public async Task Get_Marcas()
+		{
+			//arrange
+			List<Marca> Marca = new();
+			var chevrolet = new Marca
+			{
+				Nombre_marca = "Chevrolet"
+			};
+			var ford = new Marca
+			{
+				Nombre_marca = "Ford"
+			};
+			Marca.Add(chevrolet);
+			Marca.Add(ford);
+			_mockRepository.Setup(x => x.GetAllMarcasAsync()).ReturnsAsync(Marca);
+			//act
+			var result = await _mockRepository.Object.GetAllMarcasAsync();
+			//assert
+			Assert.Equal(Marca, result);
+		}
+
 	}
 }

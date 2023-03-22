@@ -45,5 +45,29 @@ namespace Domain.UseCaseTest.UnitTests
 			//Assert
 			Assert.Equal(concesionario, res);
 		}
+
+		[Fact]
+		public async Task Get_Concesionarios()
+		{
+			//arrange
+			List<Concesionario> concesionarios = new();
+			var test = new Concesionario
+			{
+				Nombre_concesionario = "Tu Carro",
+				Cantidad_Disponible = 12
+			};
+			var test1 = new Concesionario
+			{
+				Nombre_concesionario = "Tu Carro",
+				Cantidad_Disponible = 12
+			};
+			concesionarios.Add(test);
+			concesionarios.Add(test1);
+			_mockRepository.Setup(x => x.GetConcesionariosAsync()).ReturnsAsync(concesionarios);
+			//act
+			var result = await _mockRepository.Object.GetConcesionariosAsync();
+			//assert
+			Assert.Equal(concesionarios, result);
+		}
 	}
 }
