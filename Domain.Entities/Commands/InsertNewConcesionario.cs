@@ -15,5 +15,6 @@ namespace Domain.Entities.Commands
 
 		[Required]
 		public int Cantidad_Disponible { get; set; }
+
 	}
 }

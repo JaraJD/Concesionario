@@ -33,7 +33,6 @@ namespace Infrastructure.DrivenAdapter
 		public async Task<IEnumerable<Concesionario>> GetConcesionariosAsync()
 		{
 			var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-			//string sqlQuery = $"SELECT * FROM {tableName}";
 
 			var sql = $"SELECT * FROM {tableName} C INNER JOIN auto A ON C.id=A.id_concesionario";
 			var concesionario = await connection.QueryAsync<Concesionario, Auto, Concesionario>(sql,
@@ -47,7 +46,6 @@ namespace Infrastructure.DrivenAdapter
 			},
 			splitOn: "id_marca");
 
-			//var result = await connection.QueryAsync<Concesionario>(sqlQuery);
 			connection.Close();
 			return concesionario;
 		}

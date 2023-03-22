@@ -11,5 +11,10 @@ namespace Domain.Entities.Commands
 	{
 		[Required]
 		public string Nombre_marca { get; set; }
+
+		public InsertNewMarca(string nombre_marca)
+		{
+			Nombre_marca = nombre_marca;
+		}
 	}
 }
