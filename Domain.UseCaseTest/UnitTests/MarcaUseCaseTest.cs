@@ -1,14 +1,13 @@
 ﻿using Domain.Entities.Commands;
 using Domain.Entities.Entities;
 using Domain.UseCases.Gateway.Repository;
-using Domain.UseCaseTest.Builders;
 using Moq;
 
 namespace Domain.UseCaseTest.UnitTests
 {
 	public class MarcaUseCaseTest
 	{
-		private readonly Mock<IMarcaRepository<Marca>> _mockRepository;
+		private readonly Mock<IMarcaRepository> _mockRepository;
 
 		public MarcaUseCaseTest()
 		{
@@ -19,26 +18,27 @@ namespace Domain.UseCaseTest.UnitTests
 		public async Task Crear_marca()
 		{
 			//Arrange
-			_mockRepository.Setup(repo => repo.AddAsync(It.IsAny<Marca>(), It.IsAny<CancellationToken>()))
-				.ReturnsAsync(GetInsertMarca());
+
+			var insertarMarca = new Marca
+			{
+				Nombre_marca = "Audi"
+			};
+
+			var marca = new Marca
+			{
+				Nombre_marca = "Audi"
+			};
+
+			_mockRepository.Setup(repo => repo.InsertMarcaAsync(insertarMarca))
+				.ReturnsAsync(marca);
 
 			//Act
-			var useCase = new CertificadoUseCase(_mockRepository.Object);
 
-			var res = await useCase.CrearCertificado(GetCertificadoCommand());
+			var res = await _mockRepository.Object.InsertMarcaAsync(insertarMarca);
 
 			//Assert
-			_mockRepository.Verify(r => r.AddAsync(It.IsAny<StoredEvent>(), It.IsAny<CancellationToken>()), Times.Exactly(4));
-
-			_mockRepository.Verify(r => r.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Exactly(1));
-
-			Assert.NotNull(res);
-			Assert.IsType<CertificadoDTO>(res);
+			Assert.Equal(marca, res);
 		}
 
-		private InsertNewMarca GetInsertMarca() =>
-			new InsertNewMarcaBuilder()
-			.WithNombre("Audio")
-			.Build();
 	}
 }

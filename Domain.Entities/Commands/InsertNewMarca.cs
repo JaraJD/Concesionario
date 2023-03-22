@@ -16,5 +16,10 @@ namespace Domain.Entities.Commands
 		{
 			Nombre_marca = nombre_marca;
 		}
+
+		public InsertNewMarca()
+		{
+
+		}
 	}
 }

@@ -74,3 +74,9 @@ C:\Users\juans\Desktop\Programacion\C# .NET\Dapper\ConcesionarioAutos\Concesiona
 C:\Users\juans\Desktop\Programacion\C# .NET\Dapper\ConcesionarioAutos\Concesionario.Dapper\Concesionario.AppService\bin\Debug\net6.0\Domain.Entities.pdb
 C:\Users\juans\Desktop\Programacion\C# .NET\Dapper\ConcesionarioAutos\Concesionario.Dapper\Concesionario.AppService\bin\Debug\net6.0\Domain.UseCases.pdb
 C:\Users\juans\Desktop\Programacion\C# .NET\Dapper\ConcesionarioAutos\Concesionario.Dapper\Concesionario.AppService\bin\Debug\net6.0\Infrastructure.DrivenAdapter.pdb
+C:\Users\juans\Desktop\Programacion\C# .NET\Dapper\ConcesionarioAutos\Concesionario.Dapper\Concesionario.AppService\bin\Debug\net6.0\Ardalis.Specification.dll
+C:\Users\juans\Desktop\Programacion\C# .NET\Dapper\ConcesionarioAutos\Concesionario.Dapper\Concesionario.AppService\bin\Debug\net6.0\Ardalis.Specification.EntityFrameworkCore.dll
+C:\Users\juans\Desktop\Programacion\C# .NET\Dapper\ConcesionarioAutos\Concesionario.Dapper\Concesionario.AppService\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\juans\Desktop\Programacion\C# .NET\Dapper\ConcesionarioAutos\Concesionario.Dapper\Concesionario.AppService\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\juans\Desktop\Programacion\C# .NET\Dapper\ConcesionarioAutos\Concesionario.Dapper\Concesionario.AppService\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\juans\Desktop\Programacion\C# .NET\Dapper\ConcesionarioAutos\Concesionario.Dapper\Concesionario.AppService\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
