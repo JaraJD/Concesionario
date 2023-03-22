@@ -26,15 +26,20 @@ namespace Infrastructure.DrivenAdapter
 			throw new NotImplementedException();
 		}
 
-		public async Task<List<Auto>> GetAutosAsync()
+		public async Task<IEnumerable<AutoConMarca>> GetAutosAsync()
 		{
 			var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-			string sqlQuery = $"SELECT * FROM {tableName}";
 
+			var sql = $"SELECT * FROM {tableName} A INNER JOIN marcas M ON A.id_marca=M.id";
+			var auto = await connection.QueryAsync<AutoConMarca, Marca, AutoConMarca>(sql,
+			(auto, marca) => {
+				auto.marca = marca;
+				return auto;
+			},
+			splitOn: "id_marca");
 
-			var result = await connection.QueryAsync<Auto>(sqlQuery);
 			connection.Close();
-			return result.ToList();
+			return auto;
 		}
 
 		public async Task<Auto> InsertAutoAsync(Auto auto)

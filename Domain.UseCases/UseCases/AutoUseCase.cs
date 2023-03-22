@@ -29,9 +29,10 @@ namespace Domain.UseCases.UseCases
 			throw new NotImplementedException();
 		}
 
-		public async Task<List<Auto>> ObtenerListaAutos()
+		public async Task<IEnumerable<AutoConMarca>> ObtenerListaAutos()
 		{
 			return await _autoRepository.GetAutosAsync();
 		}
+
 	}
 }

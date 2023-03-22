@@ -11,7 +11,7 @@ namespace Domain.UseCases.Gateway.Repository
 	{
 		Task<Auto> InsertAutoAsync(Auto auto);
 
-		Task<List<Auto>> GetAutosAsync();
+		Task<IEnumerable<AutoConMarca>> GetAutosAsync();
 
 		Task<Auto> GetAutoByIdAsync(int idAuto);
 	}

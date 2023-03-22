@@ -19,5 +19,6 @@ namespace Domain.Entities.Commands
 
 		[Required]
 		public int Id_concesionario { get; set; }
+
 	}
 }

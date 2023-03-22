@@ -21,7 +21,7 @@ namespace Concesionario.AppService.Controllers
 		}
 
 		[HttpGet]
-		public async Task<List<Auto>> Obtener_Listado_Autos()
+		public async Task<IEnumerable<AutoConMarca>> Obtener_Listado_Autos()
 		{
 			return await _autoUseCase.ObtenerListaAutos();
 		}

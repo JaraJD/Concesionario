@@ -29,7 +29,7 @@ namespace Domain.UseCases.UseCases
 			return await _concesionarioRepository.GetConcesionarioByIdAsync(idConcesionario);
 		}
 
-		public async Task<List<Concesionario>> ObtenerListaConcesionarios()
+		public async Task<IEnumerable<Concesionario>> ObtenerListaConcesionarios()
 		{
 			return await _concesionarioRepository.GetConcesionariosAsync();
 		}

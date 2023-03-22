@@ -11,7 +11,7 @@ namespace Domain.UseCases.Gateway
 	{
 		Task<Auto> AgregarAuto(Auto auto);
 
-		Task<List<Auto>> ObtenerListaAutos();
+		Task<IEnumerable<AutoConMarca>> ObtenerListaAutos();
 
 		Task<Auto> ObtenerAutoPorId(int idAuto);
 	}

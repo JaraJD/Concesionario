@@ -11,7 +11,7 @@ namespace Domain.UseCases.Gateway.Repository
 	{
 		Task<Concesionario> InsertConcesionarioAsync(Concesionario auto);
 
-		Task<List<Concesionario>> GetConcesionariosAsync();
+		Task<IEnumerable<Concesionario>> GetConcesionariosAsync();
 
 		Task<Concesionario> GetConcesionarioByIdAsync(int idAuto);
 	}

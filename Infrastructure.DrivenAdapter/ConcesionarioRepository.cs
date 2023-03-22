@@ -30,14 +30,26 @@ namespace Infrastructure.DrivenAdapter
 			return result;
 		}
 
-		public async Task<List<Concesionario>> GetConcesionariosAsync()
+		public async Task<IEnumerable<Concesionario>> GetConcesionariosAsync()
 		{
 			var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-			string sqlQuery = $"SELECT * FROM {tableName}";
-			
-			var result = await connection.QueryAsync<Concesionario>(sqlQuery);
+			//string sqlQuery = $"SELECT * FROM {tableName}";
+
+			var sql = $"SELECT * FROM {tableName} C INNER JOIN auto A ON C.id=A.id_concesionario";
+			var concesionario = await connection.QueryAsync<Concesionario, Auto, Concesionario>(sql,
+			(concesionario, auto) => {
+				if (concesionario.Autos == null)
+				{
+					concesionario.Autos = new List<Auto> { auto };
+				}
+				concesionario.Autos.Add(auto);
+				return concesionario;
+			},
+			splitOn: "id_marca");
+
+			//var result = await connection.QueryAsync<Concesionario>(sqlQuery);
 			connection.Close();
-			return result.ToList();
+			return concesionario;
 		}
 
 		public async Task<Concesionario> InsertConcesionarioAsync(Concesionario concesionario)

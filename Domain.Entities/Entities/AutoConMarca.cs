@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.Entities
 {
-	public class Auto
+	public class AutoConMarca
 	{
 		public int Id { get; set; }
 
@@ -14,12 +14,6 @@ namespace Domain.Entities.Entities
 
 		public int Anio_fabricacion { get; set; }
 
-
-		public int Id_marca { get; set; }
-
-		public int Id_concesionario { get; set; }
-
 		public Marca marca { get; set; }
-
 	}
 }
