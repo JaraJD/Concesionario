@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Entities;
+﻿using Domain.Entities.Commands;
+using Domain.Entities.Entities;
 using Domain.UseCases.Gateway;
 using Domain.UseCases.Gateway.Repository;
 using System;
@@ -25,7 +26,7 @@ namespace Domain.UseCases.UseCases
 			return await _marcaRepository.PutMarcaAsync(idMarca, marca);
 		}
 
-		public async Task<Marca> AgregarMarca(Marca marca)
+		public async Task<InsertNewMarca> AgregarMarca(InsertNewMarca marca)
 		{
 			return await _marcaRepository.InsertMarcaAsync(marca);
 		}
@@ -35,14 +36,14 @@ namespace Domain.UseCases.UseCases
 			return await _marcaRepository.DeleteMarcaAsync(idMarca);
 		}
 
-		public async Task<List<Marca>> ObtenerListaMarcas()
+		public async Task<List<InsertNewMarca>> ObtenerListaMarcas()
 		{
 			return await _marcaRepository.GetAllMarcasAsync();
 		}
 
-		public async Task<Marca> ObtenerMarcaPorId(string idMarca)
-		{
-			return await _marcaRepository.GetMarcaByIdAsync(idMarca);
-		}
+		//public async Task<Marca> ObtenerMarcaPorId(string idMarca)
+		//{
+		//	return await _marcaRepository.GetMarcaByIdAsync(idMarca);
+		//}
 	}
 }

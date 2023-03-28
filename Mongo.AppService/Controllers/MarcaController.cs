@@ -21,21 +21,21 @@ namespace Mongo.AppService.Controllers
 		}
 
 		[HttpGet]
-		public async Task<List<Marca>> Obtener_Listado_Marcas()
+		public async Task<List<InsertNewMarca>> Obtener_Listado_Marcas()
 		{
 			return await _marcaUseCase.ObtenerListaMarcas();
 		}
 
-		[HttpGet("/ObtenerPorId/{id}")]
-		public async Task<Marca> Obtener_Marca_Id(string id)
-		{
-			return await _marcaUseCase.ObtenerMarcaPorId(id);
-		}
+		//[HttpGet("/ObtenerPorId/{id}")]
+		//public async Task<Marca> Obtener_Marca_Id(string id)
+		//{
+		//	return await _marcaUseCase.ObtenerMarcaPorId(id);
+		//}
 
 		[HttpPost]
-		public async Task<Marca> Registrar_Marca([FromBody] InsertNewMarca command)
+		public async Task<InsertNewMarca> Registrar_Marca([FromBody] InsertNewMarca command)
 		{
-			return await _marcaUseCase.AgregarMarca(_mapper.Map<Marca>(command));
+			return await _marcaUseCase.AgregarMarca(command);
 		}
 
 		[HttpPut("/ActualizarMarca/{id}")]

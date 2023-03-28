@@ -12,11 +12,11 @@ namespace Domain.UseCases.Gateway.Repository
 {
 	public interface IMarcaRepository
 	{
-		Task<Marca> InsertMarcaAsync(Marca marca);
+		Task<InsertNewMarca> InsertMarcaAsync(InsertNewMarca marca);
 
-		Task<List<Marca>> GetAllMarcasAsync();
+		Task<List<InsertNewMarca>> GetAllMarcasAsync();
 
-		Task<Marca> GetMarcaByIdAsync(string idMarca);
+		//Task<Marca> GetMarcaByIdAsync(string idMarca);
 
 		Task<Marca> PutMarcaAsync(string idMarca, Marca marca);
 

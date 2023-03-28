@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Domain.Entities.Commands;
 using Domain.Entities.Entities;
 using Domain.UseCases.Gateway.Repository;
 using Mongo.DrivenAdapter.EntitiesMongo;
@@ -28,34 +29,46 @@ namespace Mongo.DrivenAdapter.Repositories
 		{
 			var filter = Builders<MarcaEntitie>.Filter.Eq(m => m.Id_Mongo, idMarca);
 			var marca = await mongoCollection.Find(filter).FirstOrDefaultAsync();
-			var result = await mongoCollection.DeleteOneAsync(filter);
+
+			if(marca == null)
+			{
+				throw new Exception("El Id ingresado es incorrecto. ");
+			}
+
+			marca.IsDeleted = true;
+			var updateResult = await mongoCollection.ReplaceOneAsync(filter, marca);
+			
 			return _mapper.Map<Marca>(marca);
 		}
 
-		public async Task<List<Marca>> GetAllMarcasAsync()
+		public async Task<List<InsertNewMarca>> GetAllMarcasAsync()
 		{
-			var marcas = await mongoCollection.FindAsync(Builders<MarcaEntitie>.Filter.Empty);
-			var listaMarcas = marcas.ToEnumerable().Select(marca => _mapper.Map<Marca>(marca)).ToList();
+			var marcas = await mongoCollection.FindAsync(Builders<MarcaEntitie>.Filter.Eq("IsDeleted", false));
+			var listaMarcas = marcas.ToEnumerable().Select(marca => _mapper.Map<InsertNewMarca>(marca)).ToList();
 			return listaMarcas;
 		}
 
-		public async Task<Marca> GetMarcaByIdAsync(string idMarca)
-		{
-			var filter = Builders<MarcaEntitie>.Filter.Eq(marca => marca.Id_Mongo, idMarca);
-			var marca = await mongoCollection.Find(filter).FirstOrDefaultAsync();
-			return _mapper.Map<Marca>(marca);
-		}
+		//public async Task<Marca> GetMarcaByIdAsync(string idMarca)
+		//{
+		//	var filter = Builders<MarcaEntitie>.Filter.Eq(marca => marca.Id_Mongo, idMarca);
+		//	var marca = await mongoCollection.Find(filter).FirstOrDefaultAsync();
+		//	return _mapper.Map<Marca>(marca);
+		//}
 
-		public async Task<Marca> InsertMarcaAsync(Marca marca)
+		public async Task<InsertNewMarca> InsertMarcaAsync(InsertNewMarca marca)
 		{
+			if(marca == null)
+			{
+				throw new Exception("Datos erroneos. ");
+			}
 			var insertMarca = _mapper.Map<MarcaEntitie>(marca);
+			insertMarca.IsDeleted = false;
 			await mongoCollection.InsertOneAsync(insertMarca);
 			return marca;
 		}
 
 		public async Task<Marca> PutMarcaAsync(string idMarca, Marca marca)
 		{
-			//var insertMarca = _mapper.Map<MarcaEntitie>(marca);
 			var filter = Builders<MarcaEntitie>.Filter.Eq(marca => marca.Id_Mongo, idMarca);
 			var marcaToUpdate = await mongoCollection.Find(filter).FirstOrDefaultAsync();
 

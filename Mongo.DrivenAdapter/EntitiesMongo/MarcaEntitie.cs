@@ -15,6 +15,7 @@ namespace Mongo.DrivenAdapter.EntitiesMongo
 		public string Id_Mongo { get; set; }
 		public int Id { get; set; }
 
+		public bool IsDeleted { get; set; }
 		public string Nombre_marca { get; set; }
 	}
 }

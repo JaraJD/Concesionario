@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Entities;
+﻿using Domain.Entities.Commands;
+using Domain.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace Domain.UseCases.Gateway
 {
 	public interface IMarcaUseCase
 	{
-		Task<Marca> AgregarMarca(Marca marca);
+		Task<InsertNewMarca> AgregarMarca(InsertNewMarca marca);
 
-		Task<List<Marca>> ObtenerListaMarcas();
+		Task<List<InsertNewMarca>> ObtenerListaMarcas();
 
-		Task<Marca> ObtenerMarcaPorId(string idMarca);
+		//Task<Marca> ObtenerMarcaPorId(string idMarca);
 
 		Task<Marca> ActualizarMarca(string idMarca, Marca marca);
 
