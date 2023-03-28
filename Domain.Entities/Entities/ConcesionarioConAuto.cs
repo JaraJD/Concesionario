@@ -14,6 +14,6 @@ namespace Domain.Entities.Entities
 
 		public int Cantidad_Disponible { get; set; }
 
-		public List<Auto> Autos { get; set; }
+		public List<AutoConMarca> Autos { get; set; }
 	}
 }

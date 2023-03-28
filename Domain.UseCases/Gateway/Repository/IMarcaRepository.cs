@@ -17,5 +17,10 @@ namespace Domain.UseCases.Gateway.Repository
 		Task<List<Marca>> GetAllMarcasAsync();
 
 		Task<Marca> GetMarcaByIdAsync(int idMarca);
+
+		Task<Marca> PutMarcaAsync(string idMarca, Marca marca);
+
+		Task<Marca> DeleteMarcaAsync(int idMarca);
+
 	}
 }

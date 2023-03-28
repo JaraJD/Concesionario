@@ -10,10 +10,10 @@ namespace Domain.Entities.Commands
 {
 	public class InsertNewConcesionario
 	{
-		[Required]
+		[Required(ErrorMessage = "Nombre del concesionario es requerido")]
 		public string Nombre_concesionario { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "La cantidad de autos es requerida")]
 		public int Cantidad_Disponible { get; set; }
 
 	}

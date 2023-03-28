@@ -44,6 +44,13 @@ namespace Infrastructure.DrivenAdapter
 
 		public async Task<Auto> InsertAutoAsync(Auto auto)
 		{
+			if (auto.Anio_fabricacion < 1900 ||
+				auto.modelo == "" ||
+				auto.Id_marca < 1 ||
+				auto.Id_concesionario < 1)
+			{
+				throw new Exception("Datos ingresados erroneos porfavor verifiquelos");
+			}
 			var connection = await _dbConnectionBuilder.CreateConnectionAsync();
 			var autoAgregar = new
 			{

@@ -5,6 +5,7 @@ using Infrastructure.DrivenAdapter.Gateway;
 using Infrastructure.DrivenAdapter;
 using AutoMapper.Data;
 using Concesionario.AppService.Automapper;
+using Concesionario.AppService.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,7 +44,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
 app.MapControllers();
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.Run();

@@ -20,9 +20,19 @@ namespace Domain.UseCases.UseCases
 			_marcaRepository = marcaRepository;
 		}
 
+		public async Task<Marca> ActualizarMarca(string idMarca, Marca marca)
+		{
+			return await _marcaRepository.PutMarcaAsync(idMarca, marca);
+		}
+
 		public async Task<Marca> AgregarMarca(Marca marca)
 		{
 			return await _marcaRepository.InsertMarcaAsync(marca);
+		}
+
+		public Task<Marca> BorrarMarca(int idMarca)
+		{
+			throw new NotImplementedException();
 		}
 
 		public async Task<List<Marca>> ObtenerListaMarcas()

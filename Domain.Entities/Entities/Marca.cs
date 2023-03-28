@@ -12,15 +12,9 @@ namespace Domain.Entities.Entities
 
 		public string Nombre_marca { get; set; }
 
-		public Marca(int id, string nombre_marca)
-		{
-			Id = id;
-			Nombre_marca = nombre_marca;
-		}
-
 		public Marca()
 		{
-
 		}
+
 	}
 }

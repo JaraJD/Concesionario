@@ -21,6 +21,11 @@ namespace Infrastructure.DrivenAdapter
 			_dbConnectionBuilder = dbConnectionBuilder;
 		}
 
+		public Task<Marca> DeleteMarcaAsync(int idMarca)
+		{
+			throw new NotImplementedException();
+		}
+
 		public async Task<List<Marca>> GetAllMarcasAsync()
 		{
 			var connection = await _dbConnectionBuilder.CreateConnectionAsync();
@@ -37,6 +42,10 @@ namespace Infrastructure.DrivenAdapter
 
 		public async Task<Marca> InsertMarcaAsync(Marca marca)
 		{
+			if(marca.Nombre_marca == "")
+			{
+				throw new ArgumentNullException("El nombre no puede ser nulo");
+			}
 			var connection = await _dbConnectionBuilder.CreateConnectionAsync();
 			var marcaAgregar = new
 			{
@@ -45,6 +54,11 @@ namespace Infrastructure.DrivenAdapter
 			string sqlQuery = $"INSERT INTO {tableName} (nombre_marca)VALUES(@nombre)";
 			var rows = await connection.ExecuteAsync(sqlQuery, marcaAgregar);
 			return marca;
+		}
+
+		public Task<Marca> PutMarcaAsync(int idMarca)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

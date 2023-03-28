@@ -9,17 +9,10 @@ namespace Domain.Entities.Commands
 {
 	public class InsertNewMarca
 	{
-		[Required]
+		[Required(ErrorMessage = "Nombre de la marca es requerido")]
 		public string Nombre_marca { get; set; }
 
-		public InsertNewMarca(string nombre_marca)
-		{
-			Nombre_marca = nombre_marca;
-		}
+		
 
-		public InsertNewMarca()
-		{
-
-		}
 	}
 }

@@ -10,14 +10,15 @@ namespace Domain.Entities.Commands
 {
 	public class InsertNewAuto
 	{
-		[Required] public string modelo { get; set; }
+		public string modelo { get; set; }
 
-		[Required] public int Anio_fabricacion { get; set; }
+		[Required(ErrorMessage = "El año de fabricacion es requerido")]
+		public int Anio_fabricacion { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "El id de la marca es requerido")]
 		public int Id_marca { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "El id del concesionario es requerido")]
 		public int Id_concesionario { get; set; }
 
 	}

@@ -11,7 +11,7 @@ namespace Domain.UseCases.Gateway
 	{
 		Task<Concesionario> AgregarConcesionario(Concesionario concesionario);
 
-		Task<IEnumerable<Concesionario>> ObtenerListaConcesionarios();
+		Task<IEnumerable<ConcesionarioConAuto>> ObtenerListaConcesionarios();
 
 		Task<Concesionario> ObtenerConcesionarioPorId(int idConcesionario);
 	}

@@ -14,7 +14,5 @@ namespace Domain.Entities.Entities
 		public string Nombre_concesionario { get; set; }
 
 		public int Cantidad_Disponible { get; set; }
-
-		public List<Auto> Autos { get; set; }
 	}
 }

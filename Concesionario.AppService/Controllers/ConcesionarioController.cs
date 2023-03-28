@@ -21,7 +21,7 @@ namespace Concesionario.AppService.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IEnumerable<Domain.Entities.Entities.Concesionario>> Obtener_Listado_Concesionarios()
+		public async Task<IEnumerable<Domain.Entities.Entities.ConcesionarioConAuto>> Obtener_Listado_Concesionarios()
 		{
 			return await _concesionarioUseCase.ObtenerListaConcesionarios();
 		}

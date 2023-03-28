@@ -50,13 +50,13 @@ namespace Domain.UseCaseTest.UnitTests
 		public async Task Get_Concesionarios()
 		{
 			//arrange
-			List<Concesionario> concesionarios = new();
-			var test = new Concesionario
+			List<ConcesionarioConAuto> concesionarios = new();
+			var test = new ConcesionarioConAuto
 			{
 				Nombre_concesionario = "Tu Carro",
 				Cantidad_Disponible = 12
 			};
-			var test1 = new Concesionario
+			var test1 = new ConcesionarioConAuto
 			{
 				Nombre_concesionario = "Tu Carro",
 				Cantidad_Disponible = 12

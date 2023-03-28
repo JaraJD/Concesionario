@@ -19,9 +19,4 @@
     <ProjectReference Include="..\Infrastructure.DrivenAdapter\Infrastructure.DrivenAdapter.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Middlewares\" />
-    <Folder Include="Wrappers\" />
-  </ItemGroup>
-
 </Project>

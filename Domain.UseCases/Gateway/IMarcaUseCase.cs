@@ -14,5 +14,9 @@ namespace Domain.UseCases.Gateway
 		Task<List<Marca>> ObtenerListaMarcas();
 
 		Task<Marca> ObtenerMarcaPorId(int idMarca);
+
+		Task<Marca> ActualizarMarca(string idMarca, Marca marca);
+
+		Task<Marca> BorrarMarca(int idMarca);
 	}
 }

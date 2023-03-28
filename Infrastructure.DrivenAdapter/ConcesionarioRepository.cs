@@ -30,21 +30,24 @@ namespace Infrastructure.DrivenAdapter
 			return result;
 		}
 
-		public async Task<IEnumerable<Concesionario>> GetConcesionariosAsync()
+		public async Task<IEnumerable<ConcesionarioConAuto>> GetConcesionariosAsync()
 		{
 			var connection = await _dbConnectionBuilder.CreateConnectionAsync();
 
-			var sql = $"SELECT * FROM {tableName} C INNER JOIN auto A ON C.id=A.id_concesionario";
-			var concesionario = await connection.QueryAsync<Concesionario, Auto, Concesionario>(sql,
-			(concesionario, auto) => {
+			var sql = $"SELECT * FROM {tableName} C " +
+					  $"INNER JOIN auto A ON C.id=A.id_concesionario " +
+					  $"INNER JOIN marcas M ON A.id_marca = M.id";
+			var concesionario = await connection.QueryAsync<ConcesionarioConAuto, AutoConMarca, Marca, ConcesionarioConAuto>(sql,
+			(concesionario, auto, marca) => {
 				if (concesionario.Autos == null)
 				{
-					concesionario.Autos = new List<Auto> { auto };
+					concesionario.Autos = new List<AutoConMarca>();
 				}
+				auto.marca = marca;
 				concesionario.Autos.Add(auto);
 				return concesionario;
 			},
-			splitOn: "id_marca");
+			splitOn: "id");
 
 			connection.Close();
 			return concesionario;
@@ -52,6 +55,10 @@ namespace Infrastructure.DrivenAdapter
 
 		public async Task<Concesionario> InsertConcesionarioAsync(Concesionario concesionario)
 		{
+			if (concesionario.Nombre_concesionario == "" || concesionario.Cantidad_Disponible < 0)
+			{
+				throw new Exception("Campos erroneos porfavor verifica los datos ingresados");
+			}
 			var connection = await _dbConnectionBuilder.CreateConnectionAsync();
 			var concesionarioAgregar = new
 			{
