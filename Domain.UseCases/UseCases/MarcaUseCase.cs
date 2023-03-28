@@ -30,9 +30,9 @@ namespace Domain.UseCases.UseCases
 			return await _marcaRepository.InsertMarcaAsync(marca);
 		}
 
-		public Task<Marca> BorrarMarca(int idMarca)
+		public async Task<Marca> BorrarMarca(string idMarca)
 		{
-			throw new NotImplementedException();
+			return await _marcaRepository.DeleteMarcaAsync(idMarca);
 		}
 
 		public async Task<List<Marca>> ObtenerListaMarcas()
@@ -40,9 +40,9 @@ namespace Domain.UseCases.UseCases
 			return await _marcaRepository.GetAllMarcasAsync();
 		}
 
-		public Task<Marca> ObtenerMarcaPorId(int idMarca)
+		public async Task<Marca> ObtenerMarcaPorId(string idMarca)
 		{
-			throw new NotImplementedException();
+			return await _marcaRepository.GetMarcaByIdAsync(idMarca);
 		}
 	}
 }

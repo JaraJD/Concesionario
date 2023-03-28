@@ -16,11 +16,11 @@ namespace Domain.UseCases.Gateway.Repository
 
 		Task<List<Marca>> GetAllMarcasAsync();
 
-		Task<Marca> GetMarcaByIdAsync(int idMarca);
+		Task<Marca> GetMarcaByIdAsync(string idMarca);
 
 		Task<Marca> PutMarcaAsync(string idMarca, Marca marca);
 
-		Task<Marca> DeleteMarcaAsync(int idMarca);
+		Task<Marca> DeleteMarcaAsync(string idMarca);
 
 	}
 }

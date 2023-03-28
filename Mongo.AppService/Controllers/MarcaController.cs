@@ -26,16 +26,28 @@ namespace Mongo.AppService.Controllers
 			return await _marcaUseCase.ObtenerListaMarcas();
 		}
 
+		[HttpGet("/ObtenerPorId/{id}")]
+		public async Task<Marca> Obtener_Marca_Id(string id)
+		{
+			return await _marcaUseCase.ObtenerMarcaPorId(id);
+		}
+
 		[HttpPost]
 		public async Task<Marca> Registrar_Marca([FromBody] InsertNewMarca command)
 		{
 			return await _marcaUseCase.AgregarMarca(_mapper.Map<Marca>(command));
 		}
 
-		[HttpPut("ActualizarMarca/{id:int}")]
+		[HttpPut("/ActualizarMarca/{id}")]
 		public async Task<Marca> Actualizar_Marca(string id, [FromBody] InsertNewMarca command)
 		{
 			return await _marcaUseCase.ActualizarMarca(id, _mapper.Map<Marca>(command));
+		}
+
+		[HttpDelete("/BorrarMarca/{id}")]
+		public async Task<Marca> Borrar_Marca(string id)
+		{
+			return await _marcaUseCase.BorrarMarca(id);
 		}
 	}
 }

@@ -24,9 +24,12 @@ namespace Mongo.DrivenAdapter.Repositories
 			_mapper = mapper;
 		}
 
-		public Task<Marca> DeleteMarcaAsync(int idMarca)
+		public async Task<Marca> DeleteMarcaAsync(string idMarca)
 		{
-			throw new NotImplementedException();
+			var filter = Builders<MarcaEntitie>.Filter.Eq(m => m.Id_Mongo, idMarca);
+			var marca = await mongoCollection.Find(filter).FirstOrDefaultAsync();
+			var result = await mongoCollection.DeleteOneAsync(filter);
+			return _mapper.Map<Marca>(marca);
 		}
 
 		public async Task<List<Marca>> GetAllMarcasAsync()
@@ -36,9 +39,11 @@ namespace Mongo.DrivenAdapter.Repositories
 			return listaMarcas;
 		}
 
-		public Task<Marca> GetMarcaByIdAsync(int idMarca)
+		public async Task<Marca> GetMarcaByIdAsync(string idMarca)
 		{
-			throw new NotImplementedException();
+			var filter = Builders<MarcaEntitie>.Filter.Eq(marca => marca.Id_Mongo, idMarca);
+			var marca = await mongoCollection.Find(filter).FirstOrDefaultAsync();
+			return _mapper.Map<Marca>(marca);
 		}
 
 		public async Task<Marca> InsertMarcaAsync(Marca marca)
@@ -50,8 +55,8 @@ namespace Mongo.DrivenAdapter.Repositories
 
 		public async Task<Marca> PutMarcaAsync(string idMarca, Marca marca)
 		{
-			var insertMarca = _mapper.Map<MarcaEntitie>(marca);
-			var filter = Builders<MarcaEntitie>.Filter.Eq(m => m.Id_Mongo, idMarca);
+			//var insertMarca = _mapper.Map<MarcaEntitie>(marca);
+			var filter = Builders<MarcaEntitie>.Filter.Eq(marca => marca.Id_Mongo, idMarca);
 			var marcaToUpdate = await mongoCollection.Find(filter).FirstOrDefaultAsync();
 
 			if (marcaToUpdate == null)
@@ -59,12 +64,13 @@ namespace Mongo.DrivenAdapter.Repositories
 				throw new Exception($"Marca con id {idMarca} no encontrada.");
 			}
 
-			//var updateResult = await mongoCollection.ReplaceOneAsync(filter, insertMarca);
+			marcaToUpdate.Nombre_marca = marca.Nombre_marca;
+			var updateResult = await mongoCollection.ReplaceOneAsync(filter, marcaToUpdate);
 
-			//if (updateResult.ModifiedCount == 0)
-			//{
-			//	throw new Exception($"No se pudo actualizar la marca con id {idMarca}.");
-			//}
+			if (updateResult.ModifiedCount == 0)
+			{
+				throw new Exception($"No se pudo actualizar la marca con id {idMarca}.");
+			}
 
 			return marca;
 		}
